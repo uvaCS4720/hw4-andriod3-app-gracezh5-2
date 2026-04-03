@@ -2,13 +2,13 @@ package edu.nd.pmcburne.hello.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 import com.google.android.gms.maps.model.LatLng
@@ -28,7 +28,7 @@ fun MapScreen(viewModel: MapViewModel, modifier: Modifier) {
         )
     }
 
-    Column {
+    Column(modifier = modifier) {
         TagDropdown(tags, selectedTag) {
             viewModel.selectTag(it)
         }
@@ -38,13 +38,28 @@ fun MapScreen(viewModel: MapViewModel, modifier: Modifier) {
             cameraPositionState = cameraPositionState
         ) {
             locations.forEach { loc ->
-                Marker(
+                MarkerInfoWindowContent(
                     state = MarkerState(
                         position = LatLng(loc.latitude, loc.longitude)
                     ),
-                    title = loc.name,
-                    snippet = loc.description
-                )
+                    title = loc.name
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .widthIn(max = 250.dp)
+                    ) {
+                        Text(
+                            text = loc.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = loc.description,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
             }
         }
     }
