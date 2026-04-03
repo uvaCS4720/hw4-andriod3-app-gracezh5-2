@@ -4,8 +4,6 @@ A Jetpack Compose application that provides an interactive map of the University
 
 ---
 
-## 🚀 Getting Started
-
 ### 1. API Key Setup
 
 This project uses the Google Maps SDK for Android. For security reasons, the API key is not included in this repository. To run the app:
