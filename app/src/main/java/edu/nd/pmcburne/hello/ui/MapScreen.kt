@@ -16,7 +16,7 @@ import com.google.maps.android.compose.*
 import androidx.compose.runtime.Composable
 
 @Composable
-fun MapScreen(viewModel: MapViewModel) {
+fun MapScreen(viewModel: MapViewModel, modifier: Modifier) {
     val locations by viewModel.filteredLocations.collectAsStateWithLifecycle()
     val tags by viewModel.allTags.collectAsStateWithLifecycle()
     val selectedTag by viewModel.selectedTag.collectAsStateWithLifecycle()
@@ -35,7 +35,7 @@ fun MapScreen(viewModel: MapViewModel) {
 
         GoogleMap(
             modifier = Modifier.fillMaxSize(),
-            cameraPositionState = rememberCameraPositionState()
+            cameraPositionState = cameraPositionState
         ) {
             locations.forEach { loc ->
                 Marker(
