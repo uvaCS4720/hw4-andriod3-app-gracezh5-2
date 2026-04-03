@@ -21,6 +21,13 @@ fun MapScreen(viewModel: MapViewModel) {
     val tags by viewModel.allTags.collectAsStateWithLifecycle()
     val selectedTag by viewModel.selectedTag.collectAsStateWithLifecycle()
 
+    val cameraPositionState = rememberCameraPositionState {
+        position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(
+            LatLng(38.035, -78.507),
+            15f
+        )
+    }
+
     Column {
         TagDropdown(tags, selectedTag) {
             viewModel.selectTag(it)
