@@ -23,7 +23,7 @@ fun MapScreen(viewModel: MapViewModel, modifier: Modifier) {
 
     val cameraPositionState = rememberCameraPositionState {
         position = com.google.android.gms.maps.model.CameraPosition.fromLatLngZoom(
-            LatLng(38.035, -78.507),
+            LatLng(38.0355, -78.5035),
             15f
         )
     }
