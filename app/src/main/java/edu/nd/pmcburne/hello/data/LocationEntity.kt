@@ -9,5 +9,5 @@ data class LocationEntity(
     val description: String,
     val latitude: Double,
     val longitude: Double,
-    val tags: String // stored as "core,academic,library"
+    val tags: String
 )
